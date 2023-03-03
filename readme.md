@@ -86,25 +86,41 @@ Aşağıda tablolar ve şemaları verilmiş.
 
    1- öğrenci tablosuna 'sehir' alanı ekleyiniz.
 
+   cevap: ALTER TABLE ogrenci
+   ADD sehir;
 
    2- tablolarda veri olarak tarih geçen alanlarda veri tipini string yerine DateTime olarak ayarlayınız.
 
+   cevap: 
 
    3- öğrenci tablosuna 'dogum_yeri' alanı ekleyiniz ve default değerini 'Türkiye' yapınız.
 
+   cevap: ALTER TABLE ogrenci ADD dogum_yeri DEFAULT "Türkiye"
 
    4- öğrenci tablosundan 'puan' alanını siliniz.
 
+   cevap: ALTER TABLE ogrenci DROP COLUMN puan;
 
    5- öğrenciler tablosundaki kiz öğrencileri alarak kiz_ogrenciler tablosu oluşturunuz.
    
-   
+   cevap: CREATE TABLE kiz_ogrenciler as (kiz_ogrenciler 
+   SELECT * FROM ogrenci WHERE cinsiyet="K");
+
    6- kiz_ogrenciler tablosunu siliniz.
 
+   cevap: DELETE FROM kiz_ogrenciler;
 
    7- kiz_yurdu tablosu oluşturunuz(sadece 'ad' alanı olsun). 1 kayıt ekleyiniz.
       öğrenci tablosundaki kız öğrencileri kullanarak kiz_yurdunda_kalanlar tablosu oluşturunuz
 
+   cevap: CREATE TABLE kiz_yurdu ( 
+      ID int PRIMARRY KEY AUTO_INCREMENT,
+      ad TEXT NOT NULL
+   );
+
+   CREATE TABLE kiz_yurdu_ogrenciler as (
+      select "1" as yurtID, ID AS ogrenciID from ogrenci where cinsiyet = "K"
+   )
 
    8- kiz_ogrenciler tablosunun adını kogrenciler olarak değiştiriniz
 
